@@ -1,0 +1,17 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    background: rgba(0,0,0,.5);
+    backdrop-filter: blur(30px);
+    position: fixed;
+    top: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .15);
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+    color: #fff;
+    z-index: 5;
+}
+.active-nav-link{
+    color: aqua;
+}

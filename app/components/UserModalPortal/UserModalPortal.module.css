@@ -1,0 +1,35 @@
+.user-modal{
+    position: absolute;
+    top: 60px;
+    left: calc(100% - 320px);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    backdrop-filter: blur(30px);
+    background: rgba(0,0,0,.3);
+    border-radius: 8px;
+    border-top-right-radius: 0;
+    overflow-y: auto;
+    box-shadow: 5px 5px 5px #000;
+    border: rgba(255,255,255,.15) 1px solid;
+    min-width: 300px;
+    max-width: 400px;
+    width: auto;
+    padding: 1rem 0;
+}
+.signin-btn-container{
+    width: calc(100% - 40px);
+    margin: auto;
+}
+.sign-in-btn{
+    width: 100%;
+    border-radius: 24px;
+    background-color: #25D1DA;
+    color: #000;
+    padding: 6px 0;
+}
+.sign-in-btn:hover{
+    scale: 1.03;
+    background-color: #2cdfe9;
+    
+}

@@ -1,0 +1,17 @@
+.wrapper{
+    padding: 0 20px;
+    width: calc(100% - 12px);
+    overflow: auto;
+    display: flex;
+    height: 100%;
+    scroll-behavior: smooth;
+}
+.wrapper::-webkit-scrollbar{
+    display: none;
+}
+
+@media only screen and (min-width: 480px) {
+    .wrapper{
+        padding-inline: 36px;
+    }
+}
