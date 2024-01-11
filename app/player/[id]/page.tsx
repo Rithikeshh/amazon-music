@@ -9,7 +9,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import { useMusic } from '@/app/providers/MusicProvider'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-function page({ params }: { params: { id: string } }) {
+function MusicPlayer({ params }: { params: { id: string } }) {
     
   const {music, setMusic, paused, setPaused, duration, audioRef} = useMusic()
   const [loading, setLoading] = useState(true)
@@ -145,4 +145,4 @@ function page({ params }: { params: { id: string } }) {
   )
 }
 
-export default page
+export default MusicPlayer
