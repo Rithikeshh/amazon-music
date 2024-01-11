@@ -11,12 +11,14 @@ function HappySongs() {
     
   return (
     <div className='pt-[72px]'>
-
+      <>
         {loading ? 
             <SpinnerLoader/>
             :
+            
             <SeeAllMusicContainer songList={musicList} heading="Happy "/>
         }
+      </>
     </div>
   )
 }
