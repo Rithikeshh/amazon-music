@@ -7,6 +7,7 @@ import { useAuth } from '../providers/AuthProvider';
 import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
 import getHeaderWithProjectId from '../utils/headerWithProjectId';
+import { useAskForSign } from '../providers/AskForSignProvider'
 
 
 function Signup() {
@@ -26,6 +27,7 @@ function Signup() {
     const usernameRef = useRef<HTMLInputElement>(null)
     const emailRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
+    const setAskForSignInModal  = useAskForSign()?.setAskForSignInModal
 
     
     const signupUser = async ()=>{
@@ -105,6 +107,9 @@ function Signup() {
             return{...prev,[e.target.name]:e.target.value}
         })
     }
+    useEffect(()=>{
+        setAskForSignInModal(false)
+    })
   return (
     isLoggedIn ? 
     redirect('/')
