@@ -1,17 +1,26 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SeeAllMusicContainer from '../components/SeeAllMusicContainer/SeeAllMusicContainer';
 
 function Library() {
-    let musicList = [];
-    const favMusic = localStorage.getItem("amazon-music-fav");
-    if(favMusic){
-        const parsedFavMusic = JSON.parse(favMusic)
-        for(const music in parsedFavMusic){
-            musicList.push(parsedFavMusic[music])
-            
+    const [musicList, setMusicList] = useState<any>([]);
+    
+    useEffect(()=>{
+      if (typeof window !== 'undefined') {
+        const favMusic = localStorage.getItem("amazon-music-fav");
+        if(favMusic){
+            const parsedFavMusic = JSON.parse(favMusic)
+            const list:any = []
+            for(const music in parsedFavMusic){
+                list.push(parsedFavMusic[music])
+            }
+            setMusicList((prev:any)=>{
+              const newValue = [...list]
+              return newValue
+            })
         }
-    }
+      }
+    },[])
   return (
     <div className='pt-[72px]'>
       <SeeAllMusicContainer songList={musicList} heading={"Favorite song library"} />

@@ -8,24 +8,28 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { useMusic } from '@/app/providers/MusicProvider'
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import {  useRouter } from 'next/navigation'
 
 function MusicPlayer({ params }: { params: { id: string } }) {
-    
+    const router = useRouter()
   const {music, setMusic, paused, setPaused, duration, audioRef} = useMusic()
   const [loading, setLoading] = useState(true)
   const [artists, setArtists] = useState("")
-  const [isFavorite, setIsFavorite] = useState(
-    () => {
+  const [isFavorite, setIsFavorite] = useState(false)
+  const mainContainerRef = useRef<HTMLDivElement>(null)
+  useEffect(()=>{
+    if (typeof window !== 'undefined') {
       const favMusic = localStorage.getItem("amazon-music-fav");
       if (favMusic) {
         const parsedFavMusic = JSON.parse(favMusic);
-        return parsedFavMusic[params.id] || false;
+        setIsFavorite(parsedFavMusic[params.id] || false)
       }
-      return false;
+      else{
+        setIsFavorite(false)
+      }
     }
-  )
-  const mainContainerRef = useRef<HTMLDivElement>(null)
-
+    
+  },[])
     
   
   if(mainContainerRef.current)mainContainerRef.current.style.backgroundImage = `url(${music?.thumbnail})`
@@ -40,12 +44,14 @@ function MusicPlayer({ params }: { params: { id: string } }) {
       setMusic(response.data.data)
       setArtists(response.data.data.artist.map((artist:any)=>artist.name).join(', '))
       setPaused(true)
-    } catch (error) {
-      console.log(error);
-    }
-    finally{
       setLoading(false)
+    } catch (error:any) {
+      const errMsg = error.response?.data.message.includes("Invalid _id")
+      if(errMsg){
+        router.push("/pagenotfound")
+      }
     }
+    
   }
   const handleLike = ()=>{
     const favoriteObj = localStorage.getItem("amazon-music-fav")
