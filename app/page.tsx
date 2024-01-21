@@ -29,7 +29,7 @@ export default function Home() {
 
     
   return (
-    <div className='pt-[72px] mb-16'>
+    <div className='pt-[72px] mb-32'>
       {isLoading ?
         <AdLoader/>
         :
